@@ -11,7 +11,7 @@ SpringBootApplication-1.0.jar
   - application.properties
   -  ...
 
-plugins (directory configurable)
+plugins (directory path configured in application.properties)
   - plugin1.zip
     - classes
     - lib
@@ -68,4 +68,4 @@ and add in application.properties the path containing plugin zip files.
 plugins.path=/path/to/plugins
 ```
 
-[Check the demo application](demo-plugin) for more details.
+[Check out the demo application](demo-plugin) for more details.
