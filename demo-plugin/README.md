@@ -1,8 +1,6 @@
 # Spring boot plugin demo
 This application demonstrates that Spring @Component defined in plugins can be discovered at runtime by the main spring boot application
 
-Multiple services, implementing the interface [DemoService](demo-application/src/main/java/net/oneki/plugin/demo/application/service/DemoService.java), are in main application and plugins.
-
 In this demo, Spring scans and injects all services implementing [DemoService](demo-application/src/main/java/net/oneki/plugin/demo/application/service/DemoService.java) in ServiceListing at startup.  
 ```java
 @Component
