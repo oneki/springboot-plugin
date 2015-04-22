@@ -24,4 +24,4 @@ plugins (directory configurable)
 A plugin is a zip file containing classes and library.  
 At runtime, it has access to all classes of spring boot application and all classes of other plugins.
 
-[Check the demo application](demo-plugin/README.md) for more details.
+[Check the demo application](demo-plugin) for more details.
