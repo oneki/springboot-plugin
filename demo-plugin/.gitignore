@@ -1,3 +1,4 @@
+*.jar
 plugins/**
 .classpath
 .project

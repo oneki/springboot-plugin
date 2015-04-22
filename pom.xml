@@ -80,7 +80,18 @@
 								<goal>build</goal>
 							</goals>
 						</execution>
-					</executions>					
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -114,7 +125,7 @@
 				<groupId>net.oneki.plugin</groupId>
 				<artifactId>plugin</artifactId>
 				<version>${project.version}</version>
-			</dependency>			
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 </project>

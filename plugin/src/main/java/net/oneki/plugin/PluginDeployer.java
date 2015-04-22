@@ -20,7 +20,9 @@ import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -33,14 +35,28 @@ import org.apache.commons.io.FilenameUtils;
 public class PluginDeployer {
 	private static PluginAwareClassLoader classLoader;
 	
-	public static List<PluginClassLoader> loadPlugins() {
-		File currentDir = new File("").getAbsoluteFile();
-		File pluginDir = new File(currentDir.getParentFile(), "plugins");
-		return loadPlugins(pluginDir);
-	}
+//	public static List<PluginClassLoader> loadPlugins() {
+//		String path = PluginDeployer.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+//		File currentDir = null;
+//		try {
+//			String decodedPath = URLDecoder.decode(path, "UTF-8");
+//			currentDir = new File(decodedPath);
+//		} catch (UnsupportedEncodingException e) {
+//			throw new RuntimeException(e.getMessage(), e);
+//		}
+////		File currentDir = new File("").getAbsoluteFile();
+//		System.out.println("currentDir = " + currentDir.getAbsolutePath());
+//		File pluginDir = new File(currentDir.getParentFile(), "plugins");
+//		return loadPlugins(pluginDir);
+//	}
 	
 	public static List<PluginClassLoader> loadPlugins(File pluginBaseDir) {
-		return loadPlugins(pluginBaseDir, new PluginAwareClassLoader());
+		if(Thread.currentThread().getContextClassLoader() instanceof PluginAwareClassLoader) {
+			return loadPlugins(pluginBaseDir, (PluginAwareClassLoader) Thread.currentThread().getContextClassLoader());
+		} else {
+			return loadPlugins(pluginBaseDir, new PluginAwareClassLoader());
+		}
+		
 	}
 	
 	public static List<PluginClassLoader> loadPlugins(File pluginBaseDir, PluginAwareClassLoader pluginAwareClassLoader) {

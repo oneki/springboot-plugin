@@ -22,4 +22,5 @@ public class Constants {
 	public static final String PROPERTY_NAME = "name";
 	public static final String PROPERTY_BASEPACKAGES = "basePackages";
 	public static final String PROPERTY_DEPENDENCIES = "dependOnPlugins";
+	public static final String PROPERTY_PLUGIN_PATH = "plugins.path";
 }

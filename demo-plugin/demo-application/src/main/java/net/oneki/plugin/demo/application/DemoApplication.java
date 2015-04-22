@@ -16,8 +16,6 @@
 package net.oneki.plugin.demo.application;
 
 
-import net.oneki.plugin.PluginDeployer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -29,7 +27,6 @@ public class DemoApplication {
 	public static Logger logger = LoggerFactory.getLogger(DemoApplication.class);
 	
 	public static void main(String[] args) {
-		PluginDeployer.loadPlugins();
 		ConfigurableApplicationContext appContext = SpringApplication.run(DemoApplication.class, args); 
 		
 		ServiceListing serviceListing = appContext.getBean(ServiceListing.class);
