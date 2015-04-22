@@ -24,8 +24,6 @@ plugins (directory configurable)
 A plugin is a zip file containing classes and library.  
 At runtime, it has access to all classes of spring boot application and all classes of other plugins.
 
-[Check the demo application](demo-plugin) for more details.
-
 ## plugin
 A plugin is a standard spring project. Spring annotation like @Component, @Configuration, ... are supported. @ComponentScan is not taken into account (replaced by property 'basePackages' in net.oneki.plugin.properties) 
 
@@ -40,7 +38,7 @@ basePackages=net.oneki.plugin.demo.simpleplugin
 # List of plugin names the plugin depends on
 dependOnPlugins=net.oneki.plugin/demo-plugin2/1.0.0-SNAPSHOT,net.oneki.plugin/demo-plugin3/1.0.0-SNAPSHOT
 ```
-The creation of meta data file and zip file is done automatically by adding this plugin in pom.xml (compatible only with maven 3)
+The creation of meta data file and zip file is done automatically by adding this maven plugin in pom.xml (compatible only with maven 3)
 ```xml
 <plugin>
 	<groupId>net.oneki.plugin</groupId>
@@ -69,3 +67,5 @@ and add in application.properties the path containing plugin zip files.
 ```properties
 plugins.path=/path/to/plugins
 ```
+
+[Check the demo application](demo-plugin) for more details.
