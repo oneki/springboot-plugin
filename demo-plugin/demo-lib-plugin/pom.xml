@@ -6,8 +6,8 @@
 		<artifactId>demo-super-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>demo-simple-plugin</artifactId>
-	<name>Spring boot plugin demo simple plugin</name>
+	<artifactId>demo-lib-plugin</artifactId>
+	<name>Spring boot plugin demo lib plugin</name>
 	<inceptionYear>2015</inceptionYear>
 
 	<build>
@@ -44,6 +44,11 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
 		<dependency>
 			<groupId>net.oneki.plugin</groupId>
 			<artifactId>demo-application</artifactId>
