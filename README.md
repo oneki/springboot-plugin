@@ -1,6 +1,6 @@
 # Spring boot plugin
 
-**Spring boot plugin** allows an spring boot application to be extensible via plugins.
+**Spring boot plugin** allows any spring boot application to be extensible via plugins.
 
 The structure of the application is the following
 ```
