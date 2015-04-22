@@ -1,1 +1,1 @@
-Spring boot plugin example
+This application demonstrates that Spring @Component defined in plugins can be discovered at runtime by the main spring boot application
