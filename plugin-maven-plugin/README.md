@@ -1,0 +1,1 @@
+A maven plugin to generate a zip plugin file from a maven project

@@ -1,0 +1,1 @@
+org.springframework.boot.SpringApplicationRunListener=net.oneki.plugin.spring.PluginApplicationRunListener
