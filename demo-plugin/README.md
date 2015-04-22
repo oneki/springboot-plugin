@@ -95,3 +95,21 @@ public class LibService implements DemoService{
 
 }
 ```
+
+# How to test
+1. clone or download the repository.
+2. Update the property
+```properties
+plugins.path=C\:/workspace/java-plugin/springboot-plugin/demo-plugin/plugins
+```
+in application.properties of demo-application.
+In this demo, plugins are stored in "springboot-plugin/demo-plugin/plugins"
+3. Build everything by executing
+```
+mvn install
+```
+at the root of the repository.
+4. Execute the application build in target directory of demo-application via
+```
+java -jar demo-application-1.0.0-SNAPSHOT.jar
+```

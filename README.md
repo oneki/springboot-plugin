@@ -69,3 +69,9 @@ plugins.path=/path/to/plugins
 ```
 
 [Check out the demo application](demo-plugin) for more details.
+
+## Building springboot-plugin
+clone or download the repository and build everything via: 
+```
+mvn install
+```
