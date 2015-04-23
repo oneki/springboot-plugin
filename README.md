@@ -1,6 +1,6 @@
-# Spring boot plugin
+# Pluggable architecture for Spring Boot
 
-**Spring boot plugin** allows any spring boot application to be extensible via plugins.
+**Pluggable architecture for Spring Boot** allows any spring boot application to be extensible via plugins.
 
 The structure of the application is the following
 ```
