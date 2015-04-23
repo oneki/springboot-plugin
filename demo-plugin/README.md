@@ -94,6 +94,35 @@ public class LibService implements DemoService{
 }
 ```
 
+Service defined in [demo-plugindep-plugin](demo-plugindep-plugin)
+```java
+//Service to demonstrate that plugin depending on another plugin
+//can have access to libraries specific to this plugin
+@Component
+public class PluginDepService implements DemoService {
+
+	private SimpleService simpleService;
+	private ComplexService complexService;
+
+	@Autowired
+	public PluginDepService(SimpleService simpleService,
+			ComplexService complexService) {
+		this.simpleService = simpleService;
+		this.complexService = complexService;
+	}
+
+	public String getName() {
+		// We can use commons-codec lib, because demo-lib-plugin is declared
+		// as dependency in pom.xml
+		String base64Name = new String(Base64.encodeBase64("pluginDepService"
+				.getBytes()));
+		return "pluginDepService: (" + base64Name + "),  simpleService name="
+				+ simpleService.getName() + ", complexService name="
+				+ complexService.getName();
+	}
+}
+```
+
 # How to test
 1. clone or download the repository.
 2. Update the property
