@@ -15,15 +15,19 @@
  */
 package net.oneki.plugin.demo.simpleplugin.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import net.oneki.plugin.demo.application.service.DemoService;
 
 @Component
 public class SimpleService implements DemoService{
-
+	//value defined in application.properties of main app
+	@Value("${demo.application.prop}")
+	private String prop; 
+	
 	public String getName() {
-		return "Plugin 1 simple service";
+		return "Plugin 1 simple service (prop=" + prop + ")";
 	}
 
 }

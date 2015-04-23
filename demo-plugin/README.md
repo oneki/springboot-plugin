@@ -68,9 +68,12 @@ public class ComplexService implements DemoService {
 //Simple service to demonstrate that Service inside plugin are scanned.
 @Component
 public class SimpleService implements DemoService{
-
+	//value defined in application.properties of main app
+	@Value("${demo.application.prop}")
+	private String prop; 
+	
 	public String getName() {
-		return "Plugin 1 simple service";
+		return "Plugin 1 simple service (prop=" + prop + ")";
 	}
 
 }
