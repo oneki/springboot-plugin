@@ -20,6 +20,7 @@
 		<module>demo-simple-plugin</module>
 		<module>demo-lib-plugin</module>
 		<module>demo-plugindep-plugin</module>
+		<module>demo-web-plugin</module>
 		<module>demo-application</module>
 	</modules>
 

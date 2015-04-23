@@ -13,38 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.oneki.plugin.demo.application;
+package net.oneki.plugin.demo.webplugin;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import net.oneki.plugin.demo.application.ServiceListing;
 import net.oneki.plugin.demo.application.service.DemoService;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Component
-public class ServiceListing {
-	public static Logger logger = LoggerFactory.getLogger(ServiceListing.class);
+@RestController
+public class PluginController {
+
+	@Autowired 
+	ServiceListing serviceListing;
 	
-	private List<DemoService> services;
-	
-	@Autowired
-	public ServiceListing(List<DemoService> services) {
-		this.services = services;
-	}
-	
-	public void listDemoServices() {
-		if(services != null) {
-			for(DemoService service : services) {
-				logger.info("Service: " + service.getName());
-			}
+	@RequestMapping("/services")
+	public List<String> listServices() {
+		List<String> services = new ArrayList<String>();
+		for(DemoService service : serviceListing.getServices()) {
+			services.add(service.getName());
 		}
-	}
-
-	public List<DemoService> getServices() {
+		
 		return services;
+		
 	}
 	
 	

@@ -126,6 +126,28 @@ public class PluginDepService implements DemoService {
 }
 ```
 
+Controller defined in [demo-web-plugin](demo-web-plugin)
+```java
+//Controller to demonstrate that plugin can add route to a REST API
+@RestController
+public class PluginController {
+
+	@Autowired 
+	ServiceListing serviceListing; //from main application
+	
+	//accessible via http://localhost:8080/services
+	@RequestMapping("/services") 
+	public List<String> listServices() {
+		List<String> services = new ArrayList<String>();
+		for(DemoService service : serviceListing.getServices()) {
+			services.add(service.getName());
+		}
+		
+		return services;
+		
+	}	
+}
+```
 # How to test
 1. clone or download the repository.
 2. Update the property
