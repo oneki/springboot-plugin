@@ -43,17 +43,15 @@ import org.sonatype.aether.util.artifact.JavaScopes;
 import org.sonatype.aether.util.filter.DependencyFilterUtils;
 
 public class DependencyHelper {
-	
+
 	private MavenProject project;
 	private RepositorySystem repoSystem;
 	private RepositorySystemSession session;
 	private List<RemoteRepository> remoteRepos;
-	
-	
-	
+
 	public DependencyHelper(MavenProject project, RepositorySystem repoSystem,
 			RepositorySystemSession session, List<RemoteRepository> remoteRepos) {
-		
+
 		this.project = project;
 		this.repoSystem = repoSystem;
 		this.session = session;
@@ -73,10 +71,12 @@ public class DependencyHelper {
 		return artifactResult.getArtifact();
 
 	}
-	
-	public Map<Dependency, File> getDirectDependencies() throws MojoExecutionException {
+
+	public Map<Dependency, File> getDirectDependencies()
+			throws MojoExecutionException {
 		Map<Dependency, File> directDependencies = new HashMap<Dependency, File>();
-		Artifact artifact = new DefaultArtifact(ArtifactHelper.getArtifactCoord(project));
+		Artifact artifact = new DefaultArtifact(
+				ArtifactHelper.getArtifactCoord(project));
 
 		ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
 		descriptorRequest.setArtifact(artifact);
@@ -93,34 +93,41 @@ public class DependencyHelper {
 		for (Dependency dependency : descriptorResult.getDependencies()) {
 			Artifact resolvedArtifact;
 			try {
-				resolvedArtifact = resolveArtifact(dependency
-							.getArtifact());
+				resolvedArtifact = resolveArtifact(dependency.getArtifact());
 				directDependencies.put(dependency, resolvedArtifact.getFile());
 			} catch (ArtifactResolutionException e) {
 				throw new MojoExecutionException(e.getMessage(), e);
-			}	
+			}
 		}
-		
+
 		return directDependencies;
 	}
 
-	
 	public List<File> getAllDependencies() throws DependencyResolutionException {
 
-		Artifact artifact = new DefaultArtifact(ArtifactHelper.getArtifactCoord(project));
+		Artifact artifact = new DefaultArtifact(
+				ArtifactHelper.getArtifactCoord(project));
 
-        DependencyFilter classpathFlter = DependencyFilterUtils.classpathFilter( JavaScopes.RUNTIME );
+		DependencyFilter classpathFlter = DependencyFilterUtils
+				.classpathFilter(JavaScopes.RUNTIME);
 
-        CollectRequest collectRequest = new CollectRequest();
-        collectRequest.setRoot( new Dependency( artifact, JavaScopes.COMPILE ) );
-        collectRequest.setRepositories(remoteRepos);
+		CollectRequest collectRequest = new CollectRequest();
+		collectRequest.setRoot(new Dependency(artifact, JavaScopes.COMPILE));
+		collectRequest.setRepositories(remoteRepos);
 
-        DependencyRequest dependencyRequest = new DependencyRequest( collectRequest, classpathFlter );
-        List<ArtifactResult> artifactResults = repoSystem.resolveDependencies( session, dependencyRequest ).getArtifactResults();
-        List<File> files = new ArrayList<File>();
-        for(ArtifactResult artifactResult : artifactResults) {
-        	files.add(artifactResult.getArtifact().getFile());
-        }
-        return files;
+		DependencyRequest dependencyRequest = new DependencyRequest(
+				collectRequest, classpathFlter);
+		List<ArtifactResult> artifactResults = repoSystem.resolveDependencies(
+				session, dependencyRequest).getArtifactResults();
+		List<File> files = new ArrayList<File>();
+		for (ArtifactResult artifactResult : artifactResults) {
+			Artifact dep = artifactResult.getArtifact();
+			if (!dep.getGroupId().equals(project.getGroupId())
+					|| !dep.getArtifactId().equals(project.getArtifactId())
+					|| !dep.getVersion().equals(project.getVersion())) {
+				files.add(artifactResult.getArtifact().getFile());
+			}
+		}
+		return files;
 	}
 }

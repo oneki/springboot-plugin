@@ -15,9 +15,11 @@
 	<properties>
 		<plugin.location>${project.basedir}/../plugins</plugin.location>
 	</properties>
-	
+
 	<modules>
 		<module>demo-simple-plugin</module>
+		<module>demo-lib-plugin</module>
+		<module>demo-plugindep-plugin</module>
 		<module>demo-application</module>
 	</modules>
 
@@ -28,6 +30,16 @@
 				<artifactId>demo-application</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>net.oneki.plugin</groupId>
+				<artifactId>demo-simple-plugin</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.oneki.plugin</groupId>
+				<artifactId>demo-lib-plugin</artifactId>
+				<version>${project.version}</version>
+			</dependency>			
 		</dependencies>
 	</dependencyManagement>
 </project>

@@ -106,8 +106,8 @@ In this demo, plugins are stored in "springboot-plugin/demo-plugin/plugins"
 ```
 mvn install
 ```
-at the root of the repository.
-4. Execute the application build in target directory of demo-application via
+at the root of the repository.  
+4. Execute the application built in target directory of demo-application via
 ```
 java -jar demo-application-1.0.0-SNAPSHOT.jar
 ```
