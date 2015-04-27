@@ -71,7 +71,10 @@ public class PluginApplicationRunListener implements
 			
 			if(Thread.currentThread().getContextClassLoader() instanceof PluginAwareClassLoader) {
 				PluginAwareClassLoader pluginAwareClassLoader = (PluginAwareClassLoader) Thread.currentThread().getContextClassLoader();
-				appContext.scan(pluginAwareClassLoader.getBasePackages());
+				String[] basePackages = pluginAwareClassLoader.getBasePackages();
+				if(basePackages.length > 0) {
+					appContext.scan(pluginAwareClassLoader.getBasePackages());
+				}
 			}
 			
 		}
